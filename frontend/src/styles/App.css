@@ -1,0 +1,117 @@
+/* App.css */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+/* Fix navbar at the top */
+.navbar {
+  background-color: #333;
+  padding: 10px 20px;
+  position: fixed; /* Make navbar fixed */
+  top: 0; /* Position it at the top */
+  left: 0; /* Align it to the left */
+  right: 0; /* Align it to the right */
+  width: 100%; /* Make it full width */
+  z-index: 10; /* Ensure it stays on top of other content */
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.navbar li {
+  margin-right: 20px;
+}
+
+.navbar a,
+.navbar button {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.navbar a:hover,
+.navbar button:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+.form-wrapper {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.input-box {
+  margin-bottom: 15px;
+}
+
+.input-box label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-box input,
+.input-box select {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  color: black;
+}
+
+.popup-content h2 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.popup-content p {
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.popup-content button {
+  padding: 10px 20px;
+  border: none;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.popup-content button:hover {
+  background-color: #555;
+}
