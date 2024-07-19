@@ -1,0 +1,160 @@
+/* Form.css */
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url("../Components/Assets/background.png") no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.wrapper {
+  width: 400px;
+  background: transparent;
+  color: #fff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(30px);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+h1 {
+  text-align: center;
+}
+
+/* Change the layout of the input-box */
+.input-box {
+  margin-bottom: 20px;
+  display: flex; /* Align label and input horizontally */
+  align-items: center; /* Vertically align items */
+}
+
+label {
+  margin-bottom: 0;
+  margin-right: 1rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+input,
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Add a new class for checkbox and its label */
+.checkbox-container {
+  display: flex;
+  align-items: center; /* Vertically align items */
+  justify-content: space-between; /* Distribute space evenly */
+}
+
+input[type="checkbox"] {
+  width: auto;
+  /* justify-content: space-between; */ /* Remove this line */
+}
+button {
+  padding: 10px;
+  border: none;
+  background: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+button:hover {
+  background: #0056b3;
+}
+.error-message {
+  color: red;
+  text-align: center;
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.popup-content {
+  background: black;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+.popup-content h2 {
+  margin-top: 0;
+}
+.popup-content button {
+  margin-top: 20px;
+}
+
+.input-box .icon {
+  position: relative;
+  /* transform: translateY(-50%); */
+  font-size: 25px;
+  color: #333;
+  right: 20px;
+  top: 50%;
+}
+
+.check-box {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wrapper .register-link {
+  font-size: 15px;
+  text-align: center;
+  margin: 20px 0 15px;
+}
+
+.register-link p a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-link p a:hover {
+  text-decoration: underline;
+}
+
+.remember-forgot label input {
+  accent-color: #fff;
+  width: 15px;
+  height: 15px;
+  margin-right: 4px;
+}
+
+.remember-forgot a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
