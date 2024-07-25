@@ -463,6 +463,7 @@ async def options_handler():
 @app.post('/predict')
 def predict_diabetes(input_data: DiabetesInput):
     # Create DataFrame from input data
+    print(one_hot_columns)
     input_df = pd.DataFrame([{
         'gender': input_data.gender,
         'age': input_data.age,
@@ -473,10 +474,10 @@ def predict_diabetes(input_data: DiabetesInput):
         'HbA1c_level': input_data.HbA1c_level,
         'blood_glucose_level': input_data.blood_glucose_level
     }], columns=['gender', 'age', 'hypertension', 'heart_disease', 'smoking_history', 'bmi', 'HbA1c_level', 'blood_glucose_level'])
-    
+    print(input_df)
     # One-hot encode categorical features
     input_df_encoded = pd.get_dummies(input_df, columns=['gender', 'smoking_history'])
-    
+    print(input_df_encoded)
     # Ensure that the DataFrame has all the columns from the training set
     input_df_encoded = input_df_encoded.reindex(columns=one_hot_columns, fill_value=0)
     
