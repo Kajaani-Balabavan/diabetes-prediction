@@ -377,6 +377,8 @@
 #     import uvicorn
 #     uvicorn.run(app, host='0.0.0.0', port=8000)
 
+import os
+import json
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import numpy as np
@@ -387,8 +389,15 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from datetime import datetime
 
+firebase_cred_json = os.getenv('FIREBASE_CREDENTIALS_JSON')
+if firebase_cred_json:
+    cred_dict = json.loads(firebase_cred_json)
+    cred = credentials.Certificate(cred_dict)
+else:
+    raise ValueError("Firebase credentials not set in environment variables")
+
 # Firebase initialization
-cred = credentials.Certificate(r"C:\Users\DELL\Downloads\diabetes-predictor-76178-firebase-adminsdk-kxm2g-c1ccb840b3.json")
+# cred = credentials.Certificate(r"C:\Users\DELL\Downloads\diabetes-predictor-76178-firebase-adminsdk-kxm2g-c1ccb840b3.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
