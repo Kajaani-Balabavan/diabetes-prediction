@@ -379,7 +379,7 @@
 
 import os
 import json
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException,Response
 from pydantic import BaseModel
 import numpy as np
 import pandas as pd
@@ -410,7 +410,9 @@ app = FastAPI()
 
 # Configure CORS
 origins = [
-    "http://localhost:3000", # React app's URL
+    "http://localhost:3000", # Local React app's URL
+    # "https://Kajaani-Balabavan.github.io/diabetes-prediction" #Github page React app's URL
+    "https://Kajaani-Balabavan.github.io/diabetes-prediction" #Github page React app's URL
 ]
 
 app.add_middleware(
@@ -420,6 +422,15 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=["*"],
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
 
 # Define the input data model
 class DiabetesInput(BaseModel):
@@ -436,6 +447,17 @@ class DiabetesInput(BaseModel):
 @app.get("/")
 def read_root():
     return {"message": "Welcome to the Diabetes Prediction API"}
+
+@app.options('/predict')
+async def options_handler():
+    return Response(
+        status_code=204,
+        headers={
+            'Access-Control-Allow-Origin': 'https://Kajaani-Balabavan.github.io/diabetes-prediction',  # Your specific origin
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        }
+    )
 
 # Define the prediction endpoint
 @app.post('/predict')
