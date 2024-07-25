@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/diabetes-prediction/static/css/main.2be70c74.css",
-    "main.js": "/diabetes-prediction/static/js/main.d476a486.js",
+    "main.js": "/diabetes-prediction/static/js/main.ecb16093.js",
     "static/media/bg6.png": "/diabetes-prediction/static/media/bg6.0834cb8ff5d10e4af5fd.png",
     "index.html": "/diabetes-prediction/index.html",
     "main.2be70c74.css.map": "/diabetes-prediction/static/css/main.2be70c74.css.map",
-    "main.d476a486.js.map": "/diabetes-prediction/static/js/main.d476a486.js.map"
+    "main.ecb16093.js.map": "/diabetes-prediction/static/js/main.ecb16093.js.map"
   },
   "entrypoints": [
     "static/css/main.2be70c74.css",
-    "static/js/main.d476a486.js"
+    "static/js/main.ecb16093.js"
   ]
 }
