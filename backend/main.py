@@ -465,14 +465,14 @@ def predict_diabetes(input_data: DiabetesInput):
     # Create DataFrame from input data
     input_df = pd.DataFrame([{
         'gender': input_data.gender,
-        'smoking_history': input_data.smoking_history,
         'age': input_data.age,
         'hypertension': int(input_data.hypertension),
         'heart_disease': int(input_data.heart_disease),
+        'smoking_history': input_data.smoking_history,
         'bmi': input_data.bmi,
         'HbA1c_level': input_data.HbA1c_level,
         'blood_glucose_level': input_data.blood_glucose_level
-    }])
+    }], columns=['gender', 'age', 'hypertension', 'heart_disease', 'smoking_history', 'bmi', 'HbA1c_level', 'blood_glucose_level'])
     
     # One-hot encode categorical features
     input_df_encoded = pd.get_dummies(input_df, columns=['gender', 'smoking_history'])
