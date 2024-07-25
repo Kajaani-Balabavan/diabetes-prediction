@@ -412,12 +412,12 @@ app = FastAPI()
 origins = [
     "http://localhost:3000", # Local React app's URL
     # "https://Kajaani-Balabavan.github.io/diabetes-prediction" #Github page React app's URL
-    "https://Kajaani-Balabavan.github.io" #Github page React app's URL
+    "https://kajaani-balabavan.github.io" #Github page React app's URL
 ]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
