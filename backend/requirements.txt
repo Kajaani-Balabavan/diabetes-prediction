@@ -5,3 +5,5 @@ firebase-admin
 fastapi
 uvicorn
 pydantic
+scikit-learn
+imbalanced-learn
