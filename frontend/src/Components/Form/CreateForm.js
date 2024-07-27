@@ -166,9 +166,29 @@ export const CreateForm = () => {
           <div className="popup-content">
             <h2>Prediction Result</h2>
             <p>
-              {prediction.diabetes_prediction
-                ? `High risk of diabetes. Probability of diabetes: ${prediction.probability_of_diabetes}. Please consult a doctor.`
-                : `Low risk of diabetes. Probability of diabetes: ${prediction.probability_of_diabetes}.`}
+              {(() => {
+                const probability = parseFloat(
+                  prediction.probability_of_diabetes
+                );
+
+                if (probability >= 0.8) {
+                  return `High risk of diabetes (${(probability * 100).toFixed(
+                    2
+                  )}%). Immediate consultation with a doctor is recommended.`;
+                } else if (probability >= 0.6) {
+                  return `Moderate risk of diabetes (${(
+                    probability * 100
+                  ).toFixed(2)}%). Consult a doctor soon.`;
+                } else if (probability >= 0.4) {
+                  return `Low risk of diabetes (${(probability * 100).toFixed(
+                    2
+                  )}%). Consider monitoring your health.`;
+                } else {
+                  return `Very low risk of diabetes (${(
+                    probability * 100
+                  ).toFixed(2)}%). Keep up with a healthy lifestyle.`;
+                }
+              })()}
             </p>
             <button onClick={closePopup}>Close</button>
           </div>
