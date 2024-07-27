@@ -172,3 +172,18 @@ button:hover {
   color: #e1e1e1; /* Change text color on hover */
   text-decoration: underline; /* Optional: Add underline on hover for better visibility */
 }
+
+/* Add this to your Form.css file */
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+input[type="date"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

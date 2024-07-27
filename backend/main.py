@@ -528,6 +528,146 @@
 # if __name__ == '__main__':
 #     import uvicorn
 #     uvicorn.run(app, host='0.0.0.0', port=8000)
+###########################################
+# import os
+# import json
+# from fastapi import FastAPI, HTTPException, Response
+# from pydantic import BaseModel
+# import numpy as np
+# import pandas as pd
+# import joblib
+# from fastapi.middleware.cors import CORSMiddleware
+# import firebase_admin
+# from firebase_admin import credentials, firestore
+# from datetime import datetime
+
+# firebase_cred_json = os.getenv('FIREBASE_CREDENTIALS_JSON')
+# if firebase_cred_json:
+#     cred_dict = json.loads(firebase_cred_json)
+#     cred = credentials.Certificate(cred_dict)
+# else:
+#     raise ValueError("Firebase credentials not set in environment variables")
+
+# # Firebase initialization
+# firebase_admin.initialize_app(cred)
+# db = firestore.client()
+
+# # Load the LightGBM model, the one-hot column names, and the scaler
+# model = joblib.load('diabetes_model.joblib')
+# one_hot_columns = joblib.load('one_hot_columns.pkl')
+# scaler = joblib.load('scaler.pkl')
+
+# # Initialize FastAPI app
+# app = FastAPI()
+
+# # Configure CORS
+# origins = [
+#     "http://localhost:3000", # Local React app's URL
+#     "https://kajaani-balabavan.github.io" #Github page React app's URL
+# ]
+
+# app.add_middleware(
+#     CORSMiddleware,
+#     allow_origins=origins,
+#     allow_credentials=True,
+#     allow_methods=["*"],
+#     allow_headers=["*"],
+# )
+
+# # Define the input data model
+# class DiabetesInput(BaseModel):
+#     user_id: str
+#     gender: str
+#     age: float
+#     hypertension: bool
+#     heart_disease: bool
+#     smoking_history: str
+#     bmi: float
+#     HbA1c_level: float
+#     blood_glucose_level: float
+
+# # Define the root endpoint
+# @app.get("/")
+# def read_root():
+#     return {"message": "Welcome to the Diabetes Prediction API"}
+
+# @app.options('/predict')
+# async def options_handler():
+#     return Response(
+#         status_code=204,
+#         headers={
+#             'Access-Control-Allow-Origin': 'https://kajaani-balabavan.github.io/diabetes-prediction',  # Your specific origin
+#             'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+#             'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+#         }
+#     )
+
+# # Define the prediction endpoint
+# @app.post('/predict')
+# def predict_diabetes(input_data: DiabetesInput):
+#     # Create DataFrame from input data
+#     input_df = pd.DataFrame([{
+#         'gender': input_data.gender,
+#         'age': input_data.age,
+#         'hypertension': int(input_data.hypertension),
+#         'heart_disease': int(input_data.heart_disease),
+#         'smoking_history': input_data.smoking_history,
+#         'bmi': input_data.bmi,
+#         'HbA1c_level': input_data.HbA1c_level,
+#         'blood_glucose_level': input_data.blood_glucose_level
+#     }], columns=['gender', 'age', 'hypertension', 'heart_disease', 'smoking_history', 'bmi', 'HbA1c_level', 'blood_glucose_level'])
+    
+#     # One-hot encode categorical features
+#     input_df_encoded = pd.get_dummies(input_df, columns=['gender', 'smoking_history'])
+    
+#     # Ensure that the DataFrame has all the columns from the training set
+#     input_df_encoded = input_df_encoded.reindex(columns=one_hot_columns, fill_value=0)
+    
+#     # Scale the features
+#     features = scaler.transform(input_df_encoded)
+    
+#     # Make prediction
+#     prediction = model.predict(features)[0]
+#     probability = model.predict_proba(features)[0][1]  # Probability of having diabetes
+    
+#     result = {
+#         'diabetes_prediction': int(prediction),
+#         'probability_of_diabetes': f"{probability:.2f}"
+#     }
+    
+#     # Store the input data and result in Firestore
+#     data_to_save = {
+#         'user_id': input_data.user_id,
+#         'gender': input_data.gender,
+#         'age': input_data.age,
+#         'hypertension': input_data.hypertension,
+#         'heart_disease': input_data.heart_disease,
+#         'smoking_history': input_data.smoking_history,
+#         'bmi': input_data.bmi,
+#         'HbA1c_level': input_data.HbA1c_level,
+#         'blood_glucose_level': input_data.blood_glucose_level,
+#         'diabetes_prediction': result['diabetes_prediction'],
+#         'probability_of_diabetes': result['probability_of_diabetes'],
+#         'timestamp': datetime.utcnow()
+#     }
+    
+#     db.collection('predictions').add(data_to_save)
+    
+#     return result
+
+# # Define the endpoint to get stored form data for a specific user
+# @app.get('/formdata/{user_id}')
+# def get_form_data(user_id: str):
+#     docs = db.collection('predictions').where('user_id', '==', user_id).stream()
+#     form_data = [doc.to_dict() for doc in docs]
+#     if not form_data:
+#         raise HTTPException(status_code=404, detail="Data not found for this user")
+#     return form_data
+
+# # Run the app
+# if __name__ == '__main__':
+#     import uvicorn
+#     uvicorn.run(app, host='0.0.0.0', port=8000)
 
 import os
 import json
@@ -541,6 +681,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from datetime import datetime
 
+# Load Firebase credentials from environment variable
 firebase_cred_json = os.getenv('FIREBASE_CREDENTIALS_JSON')
 if firebase_cred_json:
     cred_dict = json.loads(firebase_cred_json)
@@ -548,7 +689,7 @@ if firebase_cred_json:
 else:
     raise ValueError("Firebase credentials not set in environment variables")
 
-# Firebase initialization
+# Initialize Firebase
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
@@ -562,8 +703,8 @@ app = FastAPI()
 
 # Configure CORS
 origins = [
-    "http://localhost:3000", # Local React app's URL
-    "https://kajaani-balabavan.github.io" #Github page React app's URL
+    "http://localhost:3000",  # Local React app's URL
+    "https://kajaani-balabavan.github.io"  # GitHub page React app's URL
 ]
 
 app.add_middleware(
@@ -577,8 +718,6 @@ app.add_middleware(
 # Define the input data model
 class DiabetesInput(BaseModel):
     user_id: str
-    gender: str
-    age: float
     hypertension: bool
     heart_disease: bool
     smoking_history: str
@@ -605,10 +744,26 @@ async def options_handler():
 # Define the prediction endpoint
 @app.post('/predict')
 def predict_diabetes(input_data: DiabetesInput):
+    # Retrieve user details from Firestore
+    user_doc = db.collection('users').document(input_data.user_id).get()
+    if not user_doc.exists:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    user_data = user_doc.to_dict()
+    gender = user_data.get('gender')
+    dob = user_data.get('dob')
+
+    # Calculate age from DOB
+    if dob:
+        dob_date = datetime.strptime(dob, '%Y-%m-%d')
+        age = (datetime.utcnow() - dob_date).days // 365
+    else:
+        raise HTTPException(status_code=400, detail="Date of birth is required")
+
     # Create DataFrame from input data
     input_df = pd.DataFrame([{
-        'gender': input_data.gender,
-        'age': input_data.age,
+        'gender': gender,
+        'age': age,
         'hypertension': int(input_data.hypertension),
         'heart_disease': int(input_data.heart_disease),
         'smoking_history': input_data.smoking_history,
@@ -638,8 +793,8 @@ def predict_diabetes(input_data: DiabetesInput):
     # Store the input data and result in Firestore
     data_to_save = {
         'user_id': input_data.user_id,
-        'gender': input_data.gender,
-        'age': input_data.age,
+        'gender': gender,
+        'age': age,
         'hypertension': input_data.hypertension,
         'heart_disease': input_data.heart_disease,
         'smoking_history': input_data.smoking_history,
