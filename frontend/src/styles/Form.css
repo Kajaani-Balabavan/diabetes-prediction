@@ -169,7 +169,7 @@ button:hover {
 }
 
 .forgot-password-button:hover {
-  color: #e1e1e1; /* Change text color on hover */
+  /* color: #e1e1e1; Change text color on hover */
   text-decoration: underline; /* Optional: Add underline on hover for better visibility */
 }
 

@@ -245,6 +245,7 @@ export const CreateForm = () => {
           blood_glucose_level: parseFloat(formData.blood_glucose_level),
         }),
       });
+      console.log("Data sent to FastAPI:", response);
 
       const result = await response.json();
       console.log(result);
