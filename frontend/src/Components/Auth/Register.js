@@ -71,6 +71,8 @@ import { useNavigate } from "react-router-dom";
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
+import { FaCalendar } from "react-icons/fa";
+import { BiMaleFemale } from "react-icons/bi";
 import "../../styles/Form.css";
 
 export const Register = () => {
@@ -158,6 +160,7 @@ export const Register = () => {
             <option value="Female">Female</option>
             <option value="Other">Other</option>
           </select>
+          <BiMaleFemale className="icon" />
         </div>
         <div className="input-box">
           <label htmlFor="dob">Date of Birth</label>
@@ -168,6 +171,7 @@ export const Register = () => {
             onChange={(e) => setDob(e.target.value)}
             required
           />
+          <FaCalendar className="icon" />
         </div>
         <button type="submit">Register</button>
       </form>

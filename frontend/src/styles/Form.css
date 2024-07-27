@@ -126,7 +126,7 @@ button:hover {
 
 .input-box .icon {
   font-size: 25px;
-  color: #333;
+  color: #fff;
   margin-left: 10px;
 }
 
@@ -185,7 +185,7 @@ button:hover {
 }
 
 .forgot-password-button:hover {
-  color: #ccc;
+  color: inherit; /* Inherit color from the normal state */
 }
 
 select {
