@@ -55,7 +55,8 @@ export const DisplayData = () => {
               <td>
                 {item.diabetes_prediction === 1 ? "Positive" : "Negative"}
               </td>
-              <td>{item.probability_of_diabetes} %</td> {/* Display probability */}
+              <td>{item.probability_of_diabetes * 100} %</td>{" "}
+              {/* Display probability */}
               <td>
                 {new Date(item.timestamp.seconds * 1000).toLocaleString()}
               </td>
