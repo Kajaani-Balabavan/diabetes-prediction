@@ -1,6 +1,6 @@
 /* Form.css */
 
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Poppins:wght@100..900&display=swap");
 
 body {
   margin: 0;
@@ -22,29 +22,32 @@ code {
 }
 
 .wrapper {
-  width: 400px;
-  background: transparent;
+  width: 90%;
+  max-width: 400px;
+  background: rgba(0, 0, 0, 0.6);
   color: #fff;
   padding: 30px 40px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(30px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  margin: 20px auto; /* Center the form on smaller screens */
 }
 
 form {
   display: flex;
   flex-direction: column;
 }
+
 h1 {
   text-align: center;
+  margin-bottom: 20px;
 }
 
-/* Change the layout of the input-box */
 .input-box {
   margin-bottom: 20px;
-  display: flex; /* Align label and input horizontally */
-  align-items: center; /* Vertically align items */
+  display: flex;
+  align-items: center;
 }
 
 label {
@@ -53,6 +56,7 @@ label {
   font-weight: bold;
   white-space: nowrap;
 }
+
 input,
 select {
   width: 100%;
@@ -61,17 +65,10 @@ select {
   border-radius: 5px;
 }
 
-/* Add a new class for checkbox and its label */
-.checkbox-container {
-  display: flex;
-  align-items: center; /* Vertically align items */
-  justify-content: space-between; /* Distribute space evenly */
-}
-
 input[type="checkbox"] {
   width: auto;
-  /* justify-content: space-between; */ /* Remove this line */
 }
+
 button {
   padding: 10px;
   border: none;
@@ -79,58 +76,71 @@ button {
   color: white;
   border-radius: 5px;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
+
 button:hover {
   background: #0056b3;
 }
+
 .error-message {
   color: red;
   text-align: center;
 }
+
 .popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .popup-content {
-  background: black;
+  background: #333;
   padding: 20px;
   border-radius: 10px;
   text-align: center;
+  max-width: 90%;
 }
+
 .popup-content h2 {
   margin-top: 0;
+  color: #fff;
 }
+
 .popup-content button {
   margin-top: 20px;
+  background: #007bff;
+  border: none;
+  color: #fff;
+}
+
+.popup-content button:hover {
+  background: #0056b3;
 }
 
 .input-box .icon {
-  position: relative;
-  /* transform: translateY(-50%); */
   font-size: 25px;
   color: #333;
-  right: 20px;
-  top: 50%;
+  margin-left: 10px;
 }
 
-.check-box {
-  margin-bottom: 1rem;
+.checkbox-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .wrapper .register-link {
   font-size: 15px;
   text-align: center;
-  margin: 20px 0 15px;
+  margin: 20px 0;
 }
 
 .register-link p a {
@@ -141,6 +151,12 @@ button:hover {
 
 .register-link p a:hover {
   text-decoration: underline;
+}
+
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .remember-forgot label input {
@@ -160,20 +176,18 @@ button:hover {
 }
 
 .forgot-password-button {
-  background: none; /* Remove default button background */
-  border: none; /* Remove default button border */
-  color: #fff; /* Text color */
-  font-size: 14px; /* Adjust font size as needed */
-  cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
-  text-decoration: underline; /* Add underline to make it look like a text link */
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .forgot-password-button:hover {
-  /* color: #e1e1e1; Change text color on hover */
-  text-decoration: underline; /* Optional: Add underline on hover for better visibility */
+  color: #e1e1e1;
 }
 
-/* Add this to your Form.css file */
 select {
   width: 100%;
   padding: 10px;
@@ -186,4 +200,12 @@ input[type="date"] {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .wrapper {
+    width: 95%;
+    padding: 20px;
+  }
 }

@@ -2,23 +2,25 @@
 .data-wrapper {
   max-width: 1000px;
   margin: 50px auto;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 30px 40px;
+  padding: 30px 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border: 2px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(30px);
+  background: rgba(0, 0, 0, 0.7); /* Better visibility */
 }
 
 h1 {
   text-align: center;
   color: #fff;
+  margin-bottom: 20px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  color: #fff;
 }
 
 table th,
@@ -28,10 +30,61 @@ table td {
 }
 
 table th {
-  background: #f4f4f4;
+  background: #333;
 }
 
 table td {
   text-align: center;
-  color: #fff;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .data-wrapper {
+    padding: 20px;
+  }
+
+  table {
+    font-size: 14px;
+  }
+
+  table th,
+  table td {
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  table th,
+  table td {
+    display: block;
+    text-align: left;
+  }
+
+  table th {
+    background: transparent;
+    color: #fff;
+  }
+
+  table td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 0;
+    width: 50%;
+    padding-left: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+    color: #fff;
+  }
 }
