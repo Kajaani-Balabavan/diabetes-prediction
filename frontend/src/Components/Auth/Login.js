@@ -187,7 +187,11 @@ export const Login = ({ user, setUser }) => {
             />
             Remember Password
           </label>
-          <button type="button" onClick={handleForgotPassword}>
+          <button
+            type="button"
+            className="forgot-password-button"
+            onClick={handleForgotPassword}
+          >
             Forgot Password
           </button>
         </div>

@@ -8,19 +8,18 @@ export const DisplayData = () => {
   useEffect(() => {
     const fetchData = async () => {
       const userRef = auth.currentUser;
-      const dataRef = db
-        .collection("predictions")
-        .where("user_id", "==", userRef.uid)
-        .orderBy("timestamp", "desc"); // Sort by timestamp in descending order
-      const snapshot = await dataRef.get();
-      const userData = snapshot.docs.map((doc) => doc.data());
-      setData(userData);
+      if (userRef) {
+        const dataRef = db
+          .collection("predictions")
+          .where("user_id", "==", userRef.uid)
+          .orderBy("timestamp", "desc"); // Sort by timestamp in descending order
+        const snapshot = await dataRef.get();
+        const userData = snapshot.docs.map((doc) => doc.data());
+        setData(userData);
+      }
     };
 
-    const user = auth.currentUser;
-    if (user) {
-      fetchData();
-    }
+    fetchData();
   }, []);
 
   return (
@@ -38,6 +37,7 @@ export const DisplayData = () => {
             <th>HbA1c Level</th>
             <th>Blood Glucose Level</th>
             <th>Prediction</th>
+            <th>Probability of Diabetes</th> {/* New column */}
             <th>Timestamp</th>
           </tr>
         </thead>
@@ -55,6 +55,7 @@ export const DisplayData = () => {
               <td>
                 {item.diabetes_prediction === 1 ? "Positive" : "Negative"}
               </td>
+              <td>{item.probability_of_diabetes} %</td> {/* Display probability */}
               <td>
                 {new Date(item.timestamp.seconds * 1000).toLocaleString()}
               </td>
