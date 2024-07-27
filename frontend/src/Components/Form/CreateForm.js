@@ -167,8 +167,8 @@ export const CreateForm = () => {
             <h2>Prediction Result</h2>
             <p>
               {prediction.diabetes_prediction
-                ? `High risk of diabetes. ${prediction.confidence} confidence. Please consult a doctor.`
-                : `Low risk of diabetes. ${prediction.confidence} confidence.`}
+                ? `High risk of diabetes. Probability of diabetes: ${prediction.probability_of_diabetes}. Please consult a doctor.`
+                : `Low risk of diabetes. Probability of diabetes: ${prediction.probability_of_diabetes}.`}
             </p>
             <button onClick={closePopup}>Close</button>
           </div>
