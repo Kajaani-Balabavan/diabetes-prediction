@@ -159,6 +159,7 @@ export const Login = ({ user, setUser }) => {
       <form onSubmit={handleLogin}>
         <h1>Login</h1>
         <div className="input-box">
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             placeholder="Email Address"
@@ -169,6 +170,7 @@ export const Login = ({ user, setUser }) => {
           <MdEmail className="icon" />
         </div>
         <div className="input-box">
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             placeholder="Password"

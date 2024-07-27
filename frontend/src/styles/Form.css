@@ -45,13 +45,13 @@ h1 {
 }
 
 .input-box {
-  margin-bottom: 20px;
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
 }
 
 label {
-  margin-bottom: 0;
+  width: 120px; /* Set a fixed width for labels */
   margin-right: 1rem;
   font-weight: bold;
   white-space: nowrap;
@@ -59,7 +59,7 @@ label {
 
 input,
 select {
-  width: 100%;
+  flex: 1; /* Allow input to take remaining space */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -67,6 +67,7 @@ select {
 
 input[type="checkbox"] {
   width: auto;
+  margin-left: auto; /* Align checkbox to the right */
 }
 
 button {
@@ -80,7 +81,8 @@ button {
 }
 
 button:hover {
-  background: #0056b3;
+  /* background: #0056b3; */
+  background: #ccc;
 }
 
 .error-message {
@@ -189,14 +191,14 @@ button:hover {
 }
 
 select {
-  width: 100%;
+  flex: 1; /* Allow select to take remaining space */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
 input[type="date"] {
-  width: 100%;
+  flex: 1; /* Allow date input to take remaining space */
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -207,5 +209,10 @@ input[type="date"] {
   .wrapper {
     width: 95%;
     padding: 20px;
+  }
+
+  label {
+    width: auto; /* Reset label width for smaller screens */
+    margin-right: 0.5rem; /* Reduce margin for smaller screens */
   }
 }
