@@ -110,6 +110,7 @@ export const Register = () => {
       <form onSubmit={handleRegister}>
         <h1>Register</h1>
         <div className="input-box">
+          <label htmlFor="userName">User Name</label>
           <input
             type="text"
             placeholder="UserName"
@@ -120,6 +121,7 @@ export const Register = () => {
           <FaUser className="icon" />
         </div>
         <div className="input-box">
+          <label htmlFor="email">Email</label>
           <input
             type="email"
             placeholder="Email Address"
@@ -130,6 +132,7 @@ export const Register = () => {
           <MdEmail className="icon" />
         </div>
         <div className="input-box">
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             placeholder="Password"
@@ -157,6 +160,7 @@ export const Register = () => {
           </select>
         </div>
         <div className="input-box">
+          <label htmlFor="dob">Date of Birth</label>
           <input
             type="date"
             placeholder="Date of Birth"
