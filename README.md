@@ -22,6 +22,8 @@ Important Note: The predictions provided by this application are for information
 - FastAPI
 - Firebase Authentication
 - Firestore Database
+- Railway for deploying backend
+- Github pages for deploying frontend
 
 ## Installation
 
@@ -51,8 +53,10 @@ View your medical history and prediction results on the medical history page.
 
 ## Deployment
 
-The application can be deployed to a platform like Heroku or Firebase Hosting. Ensure that environment variables for Firebase configuration are set up correctly.
+Deploy the backend using Railway for easy server management, while hosting the frontend on GitHub Pages for seamless, static site deployment.
 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## You can find the working app at https://kajaani-balabavan.github.io/diabetes-prediction/
