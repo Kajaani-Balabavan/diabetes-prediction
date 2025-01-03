@@ -230,8 +230,9 @@ export const CreateForm = () => {
     try {
       console.log("Data sent to FastAPI:", formData);
       const userRef = auth.currentUser;
-      const API_URL =
-        "https://diabetes-prediction-production-6709.up.railway.app";
+      const API_URL = "https://huggingface.co/spaces/Kajaani/diabetes-api";
+        // "https://diabetes-prediction-production-6709.up.railway.app";
+      
       const response = await fetch(`${API_URL}/predict`, {
         method: "POST",
         headers: {
